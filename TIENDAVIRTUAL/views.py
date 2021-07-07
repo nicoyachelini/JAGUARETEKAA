@@ -117,11 +117,11 @@ def agregar_al_carrito(request, producto_id):
    for id in request.session["agregar_al_carrito"]:
       if id == producto_id:
          #Existe el producto
-         return HttpResponseRedirect(reverse("TIENDAVIRTUAL:producto", args=(un_producto.id)))            
+         return HttpResponseRedirect(reverse("TIENDAVIRTUAL:producto", args=[un_producto.id]))            
    request.session["agregar_al_carrito"] += [producto_id]
-   return HttpResponseRedirect(reverse("TIENDAVIRTUAL:producto", args=(un_producto.id)))
+   return HttpResponseRedirect(reverse("TIENDAVIRTUAL:producto", args=[un_producto.id]))
 
 def mi_carrito(request):
    return render (request, "tiendaVirtual/mi_carrito.html", {
-      "agregar_al_carrito": request.session["agregar_al_carrito"],
+      "mi_carrito": request.session["agregar_al_carrito"],
    })
