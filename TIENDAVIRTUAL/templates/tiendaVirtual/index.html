@@ -8,15 +8,16 @@
             <h2 class="mb-5">Últimos productos</h2>
             
                 <!-- Estructura repetitiva FOR -->
+                <ul class="row row-cols-1 row-cols-md-3 g-4" style="list-style:none">
                 {% for un_producto in lista_productos|slice:":3"  %}
-                    <ul class="row row-cols-1 row-cols-md-3 g-4" style="list-style:none">
+                    
                         <li class="col">
                             <div class="card h-100">
                                 <div style="max-height:200px;overflow:hidden;">
                                     {% if  un_producto.producto_imagen %}
                                         <img src="{{ un_producto.producto_imagen.url }}" class="card-img-top" alt="...">
                                     {% else %}
-                                        <img src="{% static 'tiendaVirtual/images/img-defecto.jpg' %}" class="card-img-top" alt="...">
+                                        <img src="{% static 'tiendaVirtual/images/helado.jpg' %}" class="card-img-top" alt="...">
                                     {% endif %}
                                 </div>
                                 <div class="card-body d-flex flex-column justify-content-between">
@@ -47,11 +48,21 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                    <div class="row mt-5">
+                    
+                {% empty %}
+                </ul>
+                    <div class="col-12 text-center border">
+                        <h1>NO HAY PRODUCTOS</h1>
+                    </div>
+                {% endfor %}
+            
+            
+        </section>
+        <div class="container">
+        <div class="row mt-5">
                 <h2>Más productos</h2>
                 <ul class="row py-4 row-list" style="list-style:none">
-                <!-- Estructura repetitiva FOR -->
+                    <!-- Estructura repetitiva FOR -->
                     {% for un_producto in lista_productos|slice:"3:7" %}
                         <li class="py-3 border-bottom mb-3 d-flex w-100 justify-content-start">
                             <div class="">
@@ -76,29 +87,11 @@
                             </div>
                         </li>
                     {% empty %}
-                        <div class="col-12 text-center py-5 border radius">
-                            <h1>No hay más productos cargados</h1>
-                        <li>
+                        <div class="col-12 text-center border">
+                            <h1>NO HAY MÁS PRODUCTOS</h1>
+                        <div>
                     {% endfor %}
                 </ul>
             </div>
-                {% empty %}
-                    <div class="col-12 text-center py-5 my-5 border radius">
-                        <h1>No hay productos cargados</h1>
-                    </div>
-                {% endfor %}
-            
-            
-
-            
-            {% comment %} <h3>Mi carrito</h3>
-            <ul>
-                {% for producto in agregar_al_carrito %}
-                    <li>{{producto}}</li>
-                {% empty %}
-                    <li>No hay productos agregados al carrito</li>
-                {% endfor %}
-            </ul> {% endcomment %}
-        </section>
-        
+        </div>
 {% endblock main %}
