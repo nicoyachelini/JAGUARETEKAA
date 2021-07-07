@@ -1,0 +1,104 @@
+{% extends "tiendaVirtual/layout.html" %}
+
+{% load static %}
+
+{% block main %}
+   
+        <section class="container">
+            <h2 class="mb-5">Últimos productos</h2>
+            
+                <!-- Estructura repetitiva FOR -->
+                {% for un_producto in lista_productos|slice:":3"  %}
+                    <ul class="row row-cols-1 row-cols-md-3 g-4" style="list-style:none">
+                        <li class="col">
+                            <div class="card h-100">
+                                <div style="max-height:200px;overflow:hidden;">
+                                    {% if  un_producto.producto_imagen %}
+                                        <img src="{{ un_producto.producto_imagen.url }}" class="card-img-top" alt="...">
+                                    {% else %}
+                                        <img src="{% static 'tiendaVirtual/images/img-defecto.jpg' %}" class="card-img-top" alt="...">
+                                    {% endif %}
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <span style="font-size:0.8rem">#{{un_producto.id}}</span>
+                                    <h5 class="card-title" style="text-transform: capitalize;"> {{un_producto.producto_titulo}} </h5>
+                                    <p class="card-text my-0">{{un_producto.producto_descripcion}}</p>
+                                    <p class="card-text my-0">${{un_producto.producto_precio}}.-</p>
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <a href="{% url 'TIENDAVIRTUAL:agregar_al_carrito' un_producto.id %}" class="card-link align-self-center" title="Agregar al carrito" style="font-size:0.8rem">
+                                            <span class="svg-icon">
+                                                <svg style="width: 1.5rem;height:1.5rem" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 -256 1792 1792" version="1.1" width="100%" height="100%">
+                                                <g
+                                                    transform="matrix(1,0,0,-1,68.338983,1209.4915)"
+                                                    id="g2991">
+                                                    <path
+                                                    d="M 640,0 Q 640,-53 602.5,-90.5 565,-128 512,-128 459,-128 421.5,-90.5 384,-53 384,0 384,53 421.5,90.5 459,128 512,128 565,128 602.5,90.5 640,53 640,0 z m 896,0 q 0,-53 -37.5,-90.5 -37.5,-37.5 -90.5,-37.5 -53,0 -90.5,37.5 Q 1280,-53 1280,0 q 0,53 37.5,90.5 37.5,37.5 90.5,37.5 53,0 90.5,-37.5 Q 1536,53 1536,0 z m 128,1088 V 576 q 0,-24 -16,-42.5 Q 1632,515 1607,512 L 563,390 q 1,-7 4.5,-21.5 3.5,-14.5 6,-26.5 2.5,-12 2.5,-22 0,-16 -24,-64 h 920 q 26,0 45,-19 19,-19 19,-45 0,-26 -19,-45 -19,-19 -45,-19 H 448 q -26,0 -45,19 -19,19 -19,45 0,14 11,39.5 11,25.5 29.5,59.5 18.5,34 20.5,38 L 268,1152 H 64 q -26,0 -45,19 -19,19 -19,45 0,26 19,45 19,19 45,19 h 256 q 16,0 28.5,-6.5 12.5,-6.5 20,-15.5 7.5,-9 13,-24.5 5.5,-15.5 7.5,-26.5 2,-11 5.5,-29.5 3.5,-18.5 4.5,-25.5 h 1201 q 26,0 45,-19 19,-19 19,-45 z"
+                                                    id="path2993"
+                                                    inkscape:connector-curvature="0"
+                                                    style="fill:currentColor" />
+                                                </g>
+                                                </svg>
+                                            </span>
+                                            Agregar
+                                        </a>
+                                        <a href="{% url 'TIENDAVIRTUAL:producto' un_producto.id %}" class="btn btn-primary">Ver Producto</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="row mt-5">
+                <h2>Más productos</h2>
+                <ul class="row py-4 row-list" style="list-style:none">
+                <!-- Estructura repetitiva FOR -->
+                    {% for un_producto in lista_productos|slice:"3:7" %}
+                        <li class="py-3 border-bottom mb-3 d-flex w-100 justify-content-start">
+                            <div class="">
+                                <span style="font-size:0.8rem">#{{un_producto.id}}</span>
+                            </div>
+                            <div style="max-width:120px;height:100px;overflow:hidden" class="mx-3">
+                            {% if  un_producto.producto_imagen %}
+                                <img src="{{ un_producto.producto_imagen.url }}" class="card-img-top" alt="...">
+                            {% else %}
+                                <img src="{% static 'tiendaVirtual/images/helado.jpg' %}" class="card-img-top" alt="...">
+                            {% endif %}
+                            </div>
+                            <div>
+                                <h5 class="p-0 m-0" style="text-transform: capitalize;"> {{un_producto.producto_titulo}} </h5>
+                                <p class="">{{un_producto.producto_descripcion}}</p>
+                            </div>
+                            <div>
+                                <p class="">${{un_producto.producto_precio}}.-</p>
+                            </div>
+                            <div class="">
+                                <a href="{% url 'TIENDAVIRTUAL:producto' un_producto.id %}" class="btn btn-primary">Ver Producto</a>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <div class="col-12 text-center py-5 border radius">
+                            <h1>No hay más productos cargados</h1>
+                        <li>
+                    {% endfor %}
+                </ul>
+            </div>
+                {% empty %}
+                    <div class="col-12 text-center py-5 my-5 border radius">
+                        <h1>No hay productos cargados</h1>
+                    </div>
+                {% endfor %}
+            
+            
+
+            
+            {% comment %} <h3>Mi carrito</h3>
+            <ul>
+                {% for producto in agregar_al_carrito %}
+                    <li>{{producto}}</li>
+                {% empty %}
+                    <li>No hay productos agregados al carrito</li>
+                {% endfor %}
+            </ul> {% endcomment %}
+        </section>
+        
+{% endblock main %}

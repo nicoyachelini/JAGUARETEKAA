@@ -1,0 +1,22 @@
+{% extends "tiendaVirtual/layout.html" %}
+
+{% load static %}
+
+{% block main %}
+   
+        <article class="container">
+            <header>
+                <h1>Mi Carrito</h1>
+            </header>
+            <div class="row py-5">
+                <ul>
+                {% for producto in agregar_al_carrito %}
+                    <li>{{producto}}</li>
+                {% empty %}
+                    <li>No hay productos agregados al carrito</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </article>
+        
+{% endblock main %}

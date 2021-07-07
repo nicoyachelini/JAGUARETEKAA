@@ -1,0 +1,33 @@
+{% extends "tiendaVirtual/layout.html" %}
+
+{% load static %}
+
+{% block main %}
+   
+        <section class="container">
+            <h1>LISTA DE CATEGORÍAS</h1>
+            <ul class="row" style="list-style:none">
+                <!-- Estructura repetitiva FOR -->
+                {% for una_categoria in lista_categorias %}
+                    <li class="col">
+                        <div class="card">
+                            <img src="{% static 'tiendaVirtual/images/helado.jpg' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p>{{una_categoria.categoria_nombre}}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="col">
+                        <h1>NO HAY CATEGORIAS</h1>
+                    <li>
+                {% endfor %}
+            </ul>
+            {% comment %} {% if categoria_seleccionada %}
+                <div class="alert alert-info" role="alert">{{ categoria_seleccionada }}</div>
+            {% else %}
+                <div class="alert alert-info" role="alert">Todos los Articulos</div>
+            {% endif %} {% endcomment %}
+        </section>
+        
+{% endblock main %}

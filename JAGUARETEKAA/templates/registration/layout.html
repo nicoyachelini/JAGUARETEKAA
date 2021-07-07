@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Inicia Sesión</title>
+        <link rel="stylesheet" href="{% static 'tiendaVirtual/css/bootstrap.min.css' %}" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'tiendaVirtual/css/styles.css' %}" />
+        {% comment %} <script src="{% static 'tiendaVirtual/js/bootstrap.js' %}"></script> {% endcomment %}
+    </head>
+    <body class="d-flex flex-column justify-content-start">
+        <header class="navbar navbar-expand-lg navbar-dark bg-dark d-flex px-5 w-100" id="bloque_login">
+            <a class="navbar-brand" href="{% url 'TIENDAVIRTUAL:index' %}">
+                JaguareteKAA
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar1">
+                <ul class="navbar-nav d-flex jusify-content-start">
+                    <li></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

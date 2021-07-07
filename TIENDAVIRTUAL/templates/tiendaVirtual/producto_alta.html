@@ -1,0 +1,67 @@
+{% extends "tiendaVirtual/layout.html" %}
+{% load static %}
+{% block main %}
+    <section class="container">
+        <header class="border-bottom mb-5">
+            <h2>Agregar Producto</h2>
+        </header>
+        <div class="row">
+            <article class="col-md-10 mx-auto">
+                <form action="{% url 'TIENDAVIRTUAL:producto_alta' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <header class="form-group d-flex flex-column border-bottom py-2 mb-3">
+                        <label for="titulo_input" style="font-size:0.7rem;text-transform:uppercase;color:#333;letter-spacing:1px;margin-bottom:0.5rem">
+                        Titulo</label> 
+                        <h2>{{ form.producto_titulo }} {{ form.producto_titulo.errors }}</h2>
+                    </header>
+                    <div class="form-group row py-2">
+                        <div class="col-md-4 border d-flex justify-content-center flex-column" style="background-color:#f5f5f5;">
+                                <label for="imagen_input" style="font-size:0.7rem;text-transform:uppercase;color:#333;letter-spacing:1px;margin-bottom:0.5rem">Imagen</label>
+                                {{ form.producto_imagen }} {{ form.producto_imagen.errors }}
+                        </div>
+                        <div class="col-md-8 py-3 d-flex flex-column justify-content-between m-0">
+                                <label for="categoria_input" style="font-size:0.7rem;text-transform:uppercase;color:#333;letter-spacing:1px;margin-bottom:0.5rem">
+                                Categoria:</label> {{ form.producto_categoria }} {{ form.producto_categoria.errors }}
+                                <div class="mb-3"></div>
+                                <label for="descripcion_input" style="font-size:0.7rem;text-transform:uppercase;color:#333;letter-spacing:1px;margin-bottom:0.5rem">
+                                Descripcion</label> {{ form.producto_descripcion }} {{ form.producto_descripcion.errors }}
+                                <div class="mb-3"></div>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-4 w-100">
+                                <div class="">
+                                    <label for="precio_input" class="col-sm-2 col-form-label mx-2">Precio </label> {{ form.producto_precio }} {{ form.producto_precio.errors }}
+                                </div>
+                                <div class="col-group">
+                                    <button type="submit" class="btn btn-primary">Publicar Producto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            <article>
+        </div>
+
+        {% comment %} <div class="row">
+            <form action="{% url 'TIENDAVIRTUAL:producto_alta' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="categoria_input" class="col-sm-2 col-form-label">Categoria:</label> {{ form.producto_categoria }} {{ form.producto_categoria.errors }}
+                </div>
+                <div class="form-group row">
+                    <label for="titulo_input" class="col-sm-2 col-form-label">Titulo</label> {{ form.producto_titulo }} {{ form.producto_titulo.errors }}
+                </div>
+                <div class="form-group row">
+                    <label for="precio_input" class="col-sm-2 col-form-label">Precio</label> {{ form.producto_precio }} {{ form.producto_precio.errors }}
+                </div>
+                <div class="form-group row">
+                    <label for="descripcion_input" class="col-sm-2 col-form-label">Descripcion</label> {{ form.producto_descripcion }} {{ form.producto_descripcion.errors }}
+                </div>
+                <div class="form-group row">
+                    <label for="imagen_input" class="col-sm-2 col-form-label">Imagen</label> {{ form.producto_imagen }} {{ form.producto_imagen.errors }}
+                </div>
+                <div class="col-group">
+                    <button type="submit" class="btn btn-primary">Publicar Producto</button>
+                </div>
+            </form>
+        </div> {% endcomment %}
+    </section>
+{% endblock %}
